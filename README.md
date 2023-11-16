@@ -12,4 +12,4 @@ The protagonist, haunted by the weight of survivor's guilt and the memories of l
 
 As the journey progresses, the protagonist is plagued by surreal dreams and hallucinations, blurring the lines between reality and the subconscious. These sequences serve as both narrative devices and puzzle elements, challenging the player to confront the protagonist's inner demons and unravel the emotional layers of their story.
 
-<sup>Brought to you by non other than CHATGPT</sup>
+<sub>Brought to you by non other than CHATGPT</sub>
