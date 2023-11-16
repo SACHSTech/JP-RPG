@@ -26,27 +26,37 @@ public class Sketch extends PApplet {
     }
 
     public void draw() {
-        background(255);
+
+        background(200, 212, 93);
 
         movePlayer();
         checkWallCollision();
         displayPlayer();
+
     }
 
     private void movePlayer() {
+
         if (keyW) {
+
             fltPlayerY -= 16;
             keyW = false;
             strDirection = "up";
+
         } else if (keyS) {
+
             fltPlayerY += 16;
             keyS = false;
             strDirection = "down";
+
         } else if (keyA) {
+
             fltPlayerX -= 16;
             keyA = false;
             strDirection = "left";
+
         } else if (keyD) {
+
             fltPlayerX += 16;
             keyD = false;
             strDirection = "right";
@@ -54,11 +64,14 @@ public class Sketch extends PApplet {
     }
 
     private void checkWallCollision() {
+
         fltPlayerX = constrain(fltPlayerX, 0, width - 16);
         fltPlayerY = constrain(fltPlayerY, 0, height - 16);
+
     }
 
     private void displayPlayer() {
+
         if (strDirection.equals("up")) {
 
             image(imgCharacter_Up, fltPlayerX, fltPlayerY);
@@ -79,6 +92,7 @@ public class Sketch extends PApplet {
     }
 
     public void keyPressed() {
+        
         if (key == 'W' || key == 'w') {
 
             keyW = true;
