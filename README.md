@@ -1,6 +1,5 @@
 # JPGames Presents A Lonely Road
 
-<h7>
 In the not-so-distant future, a catastrophic event known as "The Silent Eclipse" plunged the world into chaos. Unprecedented natural disasters and the sudden collapse of technological systems brought about the downfall of civilization. As governments crumbled and societies fell, the remnants of humanity faced a harsh new reality.
 
 "A Lonely Road" begins years after the cataclysmic event, with the world now draped in silence and solitude. The protagonist, once an ordinary individual, found themselves miraculously immune to the initial wave of devastation. As others succumbed to the chaos, this lone survivor was left to navigate a desolate world haunted by the echoes of its past.
@@ -12,7 +11,5 @@ Throughout the journey, the protagonist encounters the remnants of a lost societ
 The protagonist, haunted by the weight of survivor's guilt and the memories of loved ones lost, embarks on a quest for meaning in this desolate world. Encountering mysterious artifacts and deciphering cryptic messages, they piece together the events that led to the collapse of society, uncovering the tragic stories of those who struggled in the face of The Silent Eclipse.
 
 As the journey progresses, the protagonist is plagued by surreal dreams and hallucinations, blurring the lines between reality and the subconscious. These sequences serve as both narrative devices and puzzle elements, challenging the player to confront the protagonist's inner demons and unravel the emotional layers of their story.
-</h7>
-<h11>
-Brought to you by non other than CHATGPT
-</h11>
+
+<sup>Brought to you by non other than CHATGPT</sup>
