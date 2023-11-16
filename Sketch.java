@@ -72,6 +72,19 @@ public class Sketch extends PApplet {
 
     private void displayPlayer() {
 
+        fill(0, 75); 
+        noStroke();
+
+        if (strDirection.equals("up") || strDirection.equals("down")) {
+
+            ellipse(fltPlayerX + 8, fltPlayerY + 16, 16, 8); 
+
+        } else if (strDirection.equals("left") || strDirection.equals("right")) {
+            
+            ellipse(fltPlayerX + 8, fltPlayerY + 16, 12, 4); 
+        
+        }
+
         if (strDirection.equals("up")) {
 
             image(imgCharacter_Up, fltPlayerX, fltPlayerY);
@@ -92,7 +105,7 @@ public class Sketch extends PApplet {
     }
 
     public void keyPressed() {
-        
+
         if (key == 'W' || key == 'w') {
 
             keyW = true;
