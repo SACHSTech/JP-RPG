@@ -12,4 +12,5 @@ The protagonist, haunted by the weight of survivor's guilt and the memories of l
 
 As the journey progresses, the protagonist is plagued by surreal dreams and hallucinations, blurring the lines between reality and the subconscious. These sequences serve as both narrative devices and puzzle elements, challenging the player to confront the protagonist's inner demons and unravel the emotional layers of their story.
 
-<sub>Brought to you by non other than CHATGPT</sub>
+<sub>
+Presented by none other than the ingenious ChatGPT 3.5, this groundbreaking advancement in natural language processing stands poised to redefine the landscape of human-AI interaction with its unparalleled capabilities and innovation.</sub>
