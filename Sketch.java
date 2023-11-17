@@ -6,13 +6,16 @@ public class Sketch extends PApplet {
     PImage imgCharacter_Down;
     PImage imgCharacter_Left;
     PImage imgCharacter_Right;
+    PImage imgSign;
 
     float fltPlayerX = 112;
     float fltPlayerY = 112;
+    float fltSection = 1;
 
     String strDirection = "down";
 
-    boolean keyW, keyS, keyA, keyD;
+    boolean fltKeyW, fltKeyS, fltKeyA, fltKeyD;
+    boolean blnReadSign = false;
 
     public void settings() {
         size(240, 240);
@@ -23,44 +26,59 @@ public class Sketch extends PApplet {
         imgCharacter_Down = loadImage("Images/Player/Character_Down.png");
         imgCharacter_Left = loadImage("Images/Player/Character_Left.png");
         imgCharacter_Right = loadImage("Images/Player/Character_Right.png");
+        imgSign = loadImage("Images/Environment/Sign.png");
     }
 
     public void draw() {
 
-        background(200, 212, 93);
+        background(200, 255, 100);
 
+        layerOne();
         movePlayer();
         checkWallCollision();
         displayPlayer();
+        layerTwo();
+        interaction();
+
+    }
+
+    private void layerOne() {
+
+        if (fltSection == 1) {
+
+            image(imgSign, 96, 112);
+
+        }
 
     }
 
     private void movePlayer() {
 
-        if (keyW) {
+        if (fltKeyW) {
 
             fltPlayerY -= 16;
-            keyW = false;
+            fltKeyW = false;
             strDirection = "up";
 
-        } else if (keyS) {
+        } else if (fltKeyS) {
 
             fltPlayerY += 16;
-            keyS = false;
+            fltKeyS = false;
             strDirection = "down";
 
-        } else if (keyA) {
+        } else if (fltKeyA) {
 
             fltPlayerX -= 16;
-            keyA = false;
+            fltKeyA = false;
             strDirection = "left";
 
-        } else if (keyD) {
+        } else if (fltKeyD) {
 
             fltPlayerX += 16;
-            keyD = false;
+            fltKeyD = false;
             strDirection = "right";
         }
+
     }
 
     private void checkWallCollision() {
@@ -102,25 +120,45 @@ public class Sketch extends PApplet {
             image(imgCharacter_Right, fltPlayerX, fltPlayerY);
 
         }
+
     }
 
     public void keyPressed() {
 
         if (key == 'W' || key == 'w') {
 
-            keyW = true;
+            fltKeyW = true;
 
         } else if (key == 'S' || key == 's') {
 
-            keyS = true;
+            fltKeyS = true;
 
         } else if (key == 'A' || key == 'a') {
 
-            keyA = true;
+            fltKeyA = true;
 
         } else if (key == 'D' || key == 'd') {
 
-            keyD = true;
+            fltKeyD = true;
         }
+
+    }
+
+    public void layerTwo() {
+
+    }
+
+    public void interaction() {
+        
+        if ((key == 'E' || key == 'e') && (fltPlayerX == 96 && fltPlayerY == 112)) {
+
+            blnReadSign = true;
+
+        } else {
+            
+            blnReadSign = false;
+
+        }
+
     }
 }
