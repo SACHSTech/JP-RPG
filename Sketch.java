@@ -33,22 +33,10 @@ public class Sketch extends PApplet {
 
         background(200, 255, 100);
 
-        layerOne();
         movePlayer();
         checkWallCollision();
+        signs();
         displayPlayer();
-        layerTwo();
-        interaction();
-
-    }
-
-    private void layerOne() {
-
-        if (fltSection == 1) {
-
-            image(imgSign, 96, 112);
-
-        }
 
     }
 
@@ -144,19 +132,17 @@ public class Sketch extends PApplet {
 
     }
 
-    public void layerTwo() {
-
-    }
-
-    public void interaction() {
+    public void signs() {
         
         if ((key == 'E' || key == 'e') && (fltPlayerX == 96 && fltPlayerY == 112)) {
-
-            blnReadSign = true;
+            
+            imgSign.resize(208,208);
+            image(imgSign, 16, 16);
 
         } else {
             
-            blnReadSign = false;
+            imgSign.resize(16,16);
+            image(imgSign, 96, 112);
 
         }
 
