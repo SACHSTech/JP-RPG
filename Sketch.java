@@ -322,6 +322,7 @@ public class Sketch extends PApplet {
             fltPlayerX += 16;
             blnKeyD = false;
             strDirection = "right";
+
         }
 
     }
@@ -333,69 +334,168 @@ public class Sketch extends PApplet {
 
         // Eric House Collision
         if (fltPlayerX == 64 && fltPlayerY == 80 && fltSection == 1 && (key == 'D' || key == 'd')) {
+           
             fltPlayerX -= 16;
+
         }
 
         if (fltPlayerX == 64 && fltPlayerY == 96 && fltSection == 1 && (key == 'D' || key == 'd')) {
+            
             fltPlayerX -= 16;
+
         }
 
 
         if (fltPlayerX == 144 && fltPlayerY == 80 && fltSection == 1 && (key == 'A' || key == 'a')) {
+          
             fltPlayerX += 16;
+
         }
 
         if (fltPlayerX == 144 && fltPlayerY == 96 && fltSection == 1 && (key == 'A' || key == 'a')) {
+          
             fltPlayerX += 16;
+
         }
 
         if (fltPlayerX == 64 && fltPlayerY == 96 && fltSection == 1 && (key == 'W' || key == 'w')) {
+           
             fltPlayerY += 16;
+
         }
         
         if (fltPlayerX == 80 && fltPlayerY == 96 && fltSection == 1 && (key == 'W' || key == 'w')) {
+           
             fltPlayerY += 16;
+
         }
     
         if (fltPlayerX == 96 && fltPlayerY == 96 && fltSection == 1 && (key == 'W' || key == 'w')) {
+           
             fltPlayerY += 16;
+
         }
 
         if (fltPlayerX == 112 && fltPlayerY == 96 && fltSection == 1 && (key == 'W' || key == 'w')) {
+           
             fltPlayerY += 16;
+
         }
 
         if (fltPlayerX == 128 && fltPlayerY == 96 && fltSection == 1 && (key == 'W' || key == 'w')) {
+          
             fltPlayerY += 16;
+
         }
 
         if (fltPlayerX == 144 && fltPlayerY == 96 && fltSection == 1 && (key == 'W' || key == 'w')) {
+          
             fltPlayerY += 16;
+
         }
 
         if (fltPlayerX == 64 && fltPlayerY == 64 && fltSection == 1 && (key == 'S' || key == 's')) {
+            
             fltPlayerY -= 16;
+
         }
         
         if (fltPlayerX == 80 && fltPlayerY == 64 && fltSection == 1 && (key == 'S' || key == 's')) {
+            
             fltPlayerY -= 16;
+
         }
     
         if (fltPlayerX == 96 && fltPlayerY == 64 && fltSection == 1 && (key == 'S' || key == 's')) {
+           
             fltPlayerY -= 16;
+
         }
 
         if (fltPlayerX == 112 && fltPlayerY == 64 && fltSection == 1 && (key == 'S' || key == 's')) {
+            
             fltPlayerY -= 16;
+
         }
 
         if (fltPlayerX == 128 && fltPlayerY == 64 && fltSection == 1 && (key == 'S' || key == 's')) {
+           
             fltPlayerY -= 16;
+
         }
 
         if (fltPlayerX == 144 && fltPlayerY == 80 && fltSection == 1 && (key == 'S' || key == 's')) {
+            
             fltPlayerY -= 16;
+        
         }
+
+        if (fltPlayerX > 128 && fltPlayerY == 96 && fltSection == 0 && blnEricHouse == true && (key == 'D' || key == 'd')) {
+            
+            fltPlayerX -= 16;
+
+        }
+
+        if (fltPlayerX > 128 && fltPlayerY == 80 && fltSection == 0 && blnEricHouse == true && (key == 'D' || key == 'd')) {
+            
+            fltPlayerX -= 16;
+
+        }
+
+        if (fltPlayerX < 80 && fltPlayerY == 96 && fltSection == 0 && blnEricHouse == true && (key == 'A' || key == 'a')) {
+            
+            fltPlayerX += 16;
+
+        }
+
+        if (fltPlayerX < 80 && fltPlayerY == 80 && fltSection == 0 && blnEricHouse == true && (key == 'A' || key == 'a')) {
+            
+            fltPlayerX += 16;
+
+        }
+
+        if (fltPlayerX == 128 && fltPlayerY < 80 && fltSection == 0 && blnEricHouse == true && (key == 'W' || key == 'w')) {
+            
+            fltPlayerY += 16;
+
+        }
+
+        if (fltPlayerX == 112 && fltPlayerY < 80 && fltSection == 0 && blnEricHouse == true && (key == 'W' || key == 'w')) {
+            
+            fltPlayerY += 16;
+
+        }
+
+        if (fltPlayerX == 96 && fltPlayerY < 80 && fltSection == 0 && blnEricHouse == true && (key == 'W' || key == 'w')) {
+            
+            fltPlayerY += 16;
+
+        }
+
+        if (fltPlayerX == 80 && fltPlayerY < 80 && fltSection == 0 && blnEricHouse == true && (key == 'W' || key == 'w')) {
+            
+            fltPlayerY += 16;
+
+        }
+
+        if (fltPlayerX == 128 && fltPlayerY > 96 && fltSection == 0 && blnEricHouse == true && (key == 'S' || key == 's')) {
+            
+            fltPlayerY -= 16;
+
+        }
+
+        if (fltPlayerX == 112 && fltPlayerY > 96 && fltSection == 0 && blnEricHouse == true && (key == 'S' || key == 's')) {
+            
+            fltPlayerY -= 16;
+
+        }
+
+        if (fltPlayerX == 80 && fltPlayerY > 96 && fltSection == 0 && blnEricHouse == true && (key == 'S' || key == 's')) {
+            
+            fltPlayerY -= 16;
+
+        }
+
     }
 
     public void layerOne() {
@@ -583,7 +683,7 @@ public class Sketch extends PApplet {
         } else {
 
         }
-        System.out.println("(" + fltPlayerX + "'" + fltPlayerY + ")");
+       
     }
 
     public void interactions() {
@@ -600,6 +700,12 @@ public class Sketch extends PApplet {
 
             fltSection = 1;
             blnEricHouse = false;
+
+        }
+
+        if ((key == 'E' || key == 'e') && (fltPlayerX == 128) && (fltPlayerY == 96 || fltPlayerY == 80) && fltSection == 0 && blnEricHouse == true) {
+
+            blnDayTime = true;
 
         }
 
