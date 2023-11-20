@@ -90,7 +90,7 @@ public class Sketch extends PApplet {
     PImage imgBush;
 
     // Player Position
-    float fltPlayerX = 112;
+    float fltPlayerX = 96;
     float fltPlayerY = 128;
     float fltSection = 1;
 
@@ -304,31 +304,6 @@ public class Sketch extends PApplet {
 
         }
 
-        if (fltSection == 0) {
-
-        } else if (fltSection == 1) {
-
-            for (int y = 0; y < 240 ; y += 16) {
-                image(imgBush, 0, y);
-            }
-
-            for (int y = 0; y < 240 ; y += 16) {
-                image(imgBush, 224, y);
-            }
-
-            for (int x = 0; x < 240 ; x += 16) {
-                image(imgBush, x, 0);
-            }
-
-            for (int x = 112; x < 240 ; x += 16) {
-                image(imgBush, x, 224);
-            }
-
-            for (int x = 0; x < 64 ; x += 16) {
-                image(imgBush, x, 224);
-            }
-
-        }
     }
 
     private void movePlayer() {
@@ -368,6 +343,11 @@ public class Sketch extends PApplet {
             fltPlayerX = constrain(fltPlayerX, 16, width - 32);
             fltPlayerY = constrain(fltPlayerY, 16, height - 16);
         
+        } else if (fltSection == 2) {
+
+            fltPlayerX = constrain(fltPlayerX, 0, width - 32);
+            fltPlayerY = constrain(fltPlayerY, 0, height - 32);
+
         }
 
         // Eric House Collision
@@ -468,6 +448,8 @@ public class Sketch extends PApplet {
         
         }
 
+
+        // Eric's Interior House Collision
         if (fltPlayerX > 128 && fltPlayerY == 96 && fltSection == 0 && blnEricHouse == true && (key == 'D' || key == 'd')) {
             
             fltPlayerX -= 16;
@@ -545,10 +527,24 @@ public class Sketch extends PApplet {
             fltPlayerX -= 16;
 
         }
-
+        
+        // Section 1 Bush Collision
         if ((fltPlayerX < 64 || fltPlayerX > 96) && fltPlayerY > 208 && fltSection == 1 && (key == 'S' || key == 's')) {
             
             fltPlayerY -= 16;
+
+        }
+
+        // Section 2 Bush Collision
+        if ((fltPlayerX < 64 || fltPlayerX > 96) && fltPlayerY < 16 && fltSection == 2 && (key == 'W' || key == 'w')) {
+            
+            fltPlayerY += 16;
+
+        }
+
+        if (fltPlayerX == 0 && fltPlayerY < 176 && fltSection == 2 && (key == 'A' || key == 'a')) {
+            
+            fltPlayerX += 16;
 
         }
 
@@ -728,6 +724,54 @@ public class Sketch extends PApplet {
         } else {
 
         }
+        
+        if (fltSection == 0) {
+
+        } else if (fltSection == 1) {
+
+            for (int y = 0; y < 240 ; y += 16) {
+                image(imgBush, 0, y);
+            }
+
+            for (int y = 0; y < 240 ; y += 16) {
+                image(imgBush, 224, y);
+            }
+
+            for (int x = 0; x < 240 ; x += 16) {
+                image(imgBush, x, 0);
+            }
+
+            for (int x = 112; x < 240 ; x += 16) {
+                image(imgBush, x, 224);
+            }
+
+            for (int x = 0; x < 64 ; x += 16) {
+                image(imgBush, x, 224);
+            }
+
+        } else if (fltSection == 2) {
+
+            for (int y = 0; y < 240 ; y += 16) {
+                image(imgBush, 224, y);
+            }
+
+            for (int x = 0; x < 240 ; x += 16) {
+                image(imgBush, x, 224);
+            }
+
+            for (int x = 112; x < 240 ; x += 16) {
+                image(imgBush, x, 0);
+            }
+
+            for (int x = 0; x < 64 ; x += 16) {
+                image(imgBush, x, 0);
+            }
+
+            for (int y = 0; y < 176 ; y += 16) {
+                image(imgBush, 0, y);
+            }
+
+        }
 
     }
 
@@ -766,10 +810,17 @@ public class Sketch extends PApplet {
 
         }
 
-        if ((fltPlayerX > 64 && fltPlayerX < 112) && fltPlayerY == 224 && fltSection == 1 && (key == 'S' || key == 's')) {
+        if ((fltPlayerX >= 64 && fltPlayerX < 112) && fltPlayerY == 224 && fltSection == 1 && (key == 'S' || key == 's')) {
             
             fltSection += 1;
-            fltPlayerY -= fltPlayerY;
+            fltPlayerY = 0;
+
+        }
+
+        if ((fltPlayerX >= 64 && fltPlayerX < 112) && fltPlayerY == 0 && fltSection == 2 && (key == 'W' || key == 'w')) {
+            
+            fltSection -= 1;
+            fltPlayerY = 224;
 
         }
 
