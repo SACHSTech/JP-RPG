@@ -496,6 +496,19 @@ public class Sketch extends PApplet {
 
         }
 
+        if (fltPlayerX < 96 && fltPlayerY == 112 && fltSection == 0 && blnEricHouse == true && (key == 'A' || key == 'a')) {
+            
+            fltPlayerX += 16;
+
+        }
+
+        if (fltPlayerX > 96 && fltPlayerY == 112 && fltSection == 0 && blnEricHouse == true && (key == 'D' || key == 'd')) {
+            
+            fltPlayerX -= 16;
+
+        }
+
+        System.out.println(fltPlayerX + " " + fltPlayerY);
     }
 
     public void layerOne() {
