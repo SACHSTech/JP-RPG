@@ -140,6 +140,7 @@ public class Sketch extends PApplet {
     boolean blnS1_Initialize = false;
     boolean blnMouseUp = true;
     boolean blnIsAttacking = false;
+    boolean blnGameOver = false;
 
     public void settings() {
         size(240, 240);
@@ -322,27 +323,38 @@ public class Sketch extends PApplet {
 
     public void draw() {
 
-        startGame();
+        if (!blnGameOver) {
 
-        movePlayer();
+            startGame();
 
-        checkCollision();
+            movePlayer();
 
-        // Images Will Be Behind Of Player
-        layerOne();
-        
-        mouse();
+            checkCollision();
 
-        displayPlayer();
+            // Images Will Be Behind Of Player
+            layerOne();
+            
+            mouse();
 
-        // Images Will Be Infront Of Player
-        layerTwo();
+            displayPlayer();
 
-        displaySigns();
+            // Images Will Be Infront Of Player
+            layerTwo();
 
-        enemies();
+            displaySigns();
 
-        interactions();
+            enemies();
+
+            interactions();
+
+            gameOver();
+
+        } else {
+
+
+
+        }
+
     }
 
     private void startGame() {
@@ -1095,6 +1107,16 @@ public class Sketch extends PApplet {
             
             fltSection -= 1;
             fltPlayerY = 224;
+
+        }
+
+    }
+
+    public void gameOver() {
+
+        if (intPlayerLives <= 0) {
+
+            blnGameOver = true;
 
         }
 
