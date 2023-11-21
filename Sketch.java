@@ -172,7 +172,7 @@ public class Sketch extends PApplet {
         imgSign = loadImage("Images/Environment/Sign.png");
         imgSignText1 = loadImage("Images/Environment/Sign_Text/Sign_Text1.png");
         
-        // Load & Resize Eric's House
+        // Load & Resize Eric's House (Preston Sucks)
         imgH1_1 = loadImage("Images/Buildings/Eric_House/H1_1.png");
         imgH1_1.resize(16,16);
         imgH1_2 = loadImage("Images/Buildings/Eric_House/H1_2.png");
@@ -1117,6 +1117,7 @@ public class Sketch extends PApplet {
         if (intPlayerLives <= 0) {
 
             blnGameOver = true;
+            background(255, 255, 255);
 
         }
 
