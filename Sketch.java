@@ -9,7 +9,10 @@ public class Sketch extends PApplet {
     PImage imgCharacter_Left;
     PImage imgCharacter_Right;
 
+    PImage[] imgCharacter_Up_Attack;
     PImage[] imgCharacter_Down_Attack;
+    PImage[] imgCharacter_Left_Attack;
+    PImage[] imgCharacter_Right_Attack;
 
     // Enemy 
     PImage imgSkeleton_Up;
@@ -154,10 +157,25 @@ public class Sketch extends PApplet {
         imgCharacter_Right = loadImage("Images/Player/Character_Right.png");
 
         // Load Character Animation
+        imgCharacter_Up_Attack = new PImage[totalFrames];
         imgCharacter_Down_Attack = new PImage[totalFrames];
+        imgCharacter_Left_Attack = new PImage[totalFrames];
+        imgCharacter_Right_Attack = new PImage[totalFrames];
+
+        for (int i = 0; i < totalFrames; i++) {
+            imgCharacter_Up_Attack[i] = loadImage("Images/Player/Character_Up_Attack" + i + ".png");
+        }
 
         for (int i = 0; i < totalFrames; i++) {
             imgCharacter_Down_Attack[i] = loadImage("Images/Player/Character_Down_Attack" + i + ".png");
+        }
+
+        for (int i = 0; i < totalFrames; i++) {
+            imgCharacter_Left_Attack[i] = loadImage("Images/Player/Character_Left_Attack" + i + ".png");
+        }
+
+        for (int i = 0; i < totalFrames; i++) {
+            imgCharacter_Right_Attack[i] = loadImage("Images/Player/Character_Right_Attack" + i + ".png");
         }
         
         // Load Enemy
@@ -351,6 +369,7 @@ public class Sketch extends PApplet {
 
         } else {
 
+            background(255, 255, 255);
 
 
         }
@@ -756,7 +775,7 @@ public class Sketch extends PApplet {
           // Implement attack animation logic
           if (strPDirection.equals("up")) {
 
-            image(imgCharacter_Up, fltPlayerX, fltPlayerY);
+            image(imgCharacter_Up_Attack[attackFrame], fltPlayerX, fltPlayerY);
 
           } else if (strPDirection.equals("down")) {
 
@@ -764,11 +783,11 @@ public class Sketch extends PApplet {
 
           } else if (strPDirection.equals("left")) {
 
-            image(imgCharacter_Left, fltPlayerX, fltPlayerY);
+            image(imgCharacter_Left_Attack[attackFrame], fltPlayerX, fltPlayerY);
 
           } else if (strPDirection.equals("right")) {
 
-            image(imgCharacter_Right, fltPlayerX, fltPlayerY);
+            image(imgCharacter_Right_Attack[attackFrame], fltPlayerX, fltPlayerY);
           }
       
           // Attack Animation
@@ -1007,7 +1026,25 @@ public class Sketch extends PApplet {
                             strSDirection = "up";
                         }
 
-                        if (dist(fltS1_X, fltS1_Y, fltPlayerX, fltPlayerY) < 20) { 
+                        if (fltS1_X < 16) {
+
+                            fltS1_X += 16;
+
+                        } else if (fltS1_X > 224) {
+
+                            fltS1_X -= 16;
+
+                        } else if (fltS1_Y < 16) {
+                    
+                            fltS1_Y += 16;
+
+                        } else if (fltS1_Y < 16) {
+                     
+                            fltS1_Y -= 16; 
+
+                        }
+
+                        if (dist(fltS1_X, fltS1_Y, fltPlayerX, fltPlayerY) < 16) { 
                         
                             intPlayerLives--;
                 
@@ -1117,7 +1154,6 @@ public class Sketch extends PApplet {
         if (intPlayerLives <= 0) {
 
             blnGameOver = true;
-            background(255, 255, 255);
 
         }
 
