@@ -9,6 +9,13 @@ public class Sketch extends PApplet {
     PImage imgCharacter_Left;
     PImage imgCharacter_Right;
 
+    PImage[] imgCharacter_Down_Attack;
+
+    // Enemy 
+    PImage imgSkeleton_Up;
+    PImage imgSkeleton_Down;
+    PImage imgSkeleton_Left;
+    PImage imgSkeleton_Right;
 
     // Signs
     PImage imgSign;
@@ -89,35 +96,77 @@ public class Sketch extends PApplet {
     // Border?
     PImage imgBush;
 
+    // Mouse
+    PImage imgMouse;
+    PImage imgMouse_IR;
+    PImage imgMouse_OOR;
+
+    // Player Range
+    int intRange = 1;
+
     // Player Position
     float fltPlayerX = 96;
     float fltPlayerY = 128;
     float fltSection = 1;
 
+    // Skeleton Position
+    float fltS1_X;
+    float fltS1_Y;
+
     // Eric's House Position
     float fltEHouseX = 64;
     float fltEHouseY = 48;
 
-    // Player Direction
-    String strDirection = "down";
+    // Character Lives
+    int intPlayerLives = 10;
+    int intS1_Lives = 0;
+    
+    // Character Attack Animation Frames
+    int attackFrame = 0;
+    int totalFrames = 5; 
+
+    // Skeleton Movement Delay
+    int skeletonMoveDelay = 60;
+
+    // Character Directions
+    String strPDirection = "down";
+    String strSDirection = "down";
 
     // Boolean Values
     boolean blnKeyW, blnKeyS, blnKeyA, blnKeyD;
     boolean blnReadSign = false;
     boolean blnEricHouse = false;
     boolean blnDayTime = true;
+    boolean blnS1_Initialize = false;
+    boolean blnMouseUp = true;
+    boolean blnIsAttacking = false;
 
     public void settings() {
         size(240, 240);
     }
 
     public void setup() {
-        // Loads Character
+        // Load Character
         imgCharacter_Up = loadImage("Images/Player/Character_Up.png");
         imgCharacter_Down = loadImage("Images/Player/Character_Down.png");
         imgCharacter_Left = loadImage("Images/Player/Character_Left.png");
         imgCharacter_Right = loadImage("Images/Player/Character_Right.png");
+
+        // Load Character Animation
+        imgCharacter_Down_Attack = new PImage[totalFrames];
+
+        for (int i = 0; i < totalFrames; i++) {
+            imgCharacter_Down_Attack[i] = loadImage("Images/Player/Character_Down_Attack" + i + ".png");
+        }
         
+        // Load Enemy
+
+        imgSkeleton_Up = loadImage("Images/Enemy/Skeleton_Up.png");
+        imgSkeleton_Down = loadImage("Images/Enemy/Skeleton_Down.png");
+        imgSkeleton_Left = loadImage("Images/Enemy/Skeleton_Left.png");
+        imgSkeleton_Right = loadImage("Images/Enemy/Skeleton_Right.png");
+
+
         // Load Signs
         imgSign = loadImage("Images/Environment/Sign.png");
         imgSignText1 = loadImage("Images/Environment/Sign_Text/Sign_Text1.png");
@@ -261,7 +310,14 @@ public class Sketch extends PApplet {
         // Load Border?
         imgBush = loadImage("Images/Environment/Bush.png");
         imgBush.resize(16,16);
-    
+
+        // Load Mouse
+        imgMouse = loadImage("Images/Mouse/Mouse.png");
+        imgMouse.resize(16,16);
+        imgMouse_OOR = loadImage("Images/Mouse/Mouse_OOR.png");
+        imgMouse_OOR.resize(16,16);
+        imgMouse_IR = loadImage("Images/Mouse/Mouse_IR.png");
+        imgMouse_IR.resize(16,16);
     }
 
     public void draw() {
@@ -273,7 +329,9 @@ public class Sketch extends PApplet {
         checkCollision();
 
         // Images Will Be Behind Of Player
-        layerOne();     
+        layerOne();
+        
+        mouse();
 
         displayPlayer();
 
@@ -282,10 +340,13 @@ public class Sketch extends PApplet {
 
         displaySigns();
 
+        enemies();
+
         interactions();
     }
 
     private void startGame() {
+
         if (fltSection == 0) {
 
             background(0);
@@ -312,25 +373,25 @@ public class Sketch extends PApplet {
 
             fltPlayerY -= 16;
             blnKeyW = false;
-            strDirection = "up";
+            strPDirection = "up";
 
         } else if (blnKeyS) {
 
             fltPlayerY += 16;
             blnKeyS = false;
-            strDirection = "down";
+            strPDirection = "down";
 
         } else if (blnKeyA) {
 
             fltPlayerX -= 16;
             blnKeyA = false;
-            strDirection = "left";
+            strPDirection = "left";
 
         } else if (blnKeyD) {
 
             fltPlayerX += 16;
             blnKeyD = false;
-            strDirection = "right";
+            strPDirection = "right";
 
         }
 
@@ -535,7 +596,31 @@ public class Sketch extends PApplet {
 
         }
 
+        if (fltPlayerX == 112 && fltPlayerY == 224 && fltSection == 1 && (key == 'D' || key == 'd')) {
+            
+            fltPlayerX -= 16;
+
+        }
+
+        if (fltPlayerX == 48  && fltPlayerY == 224 && fltSection == 1 && (key == 'A' || key == 'a')) {
+            
+            fltPlayerX += 16;
+
+        }
+
         // Section 2 Bush Collision
+        if (fltPlayerX == 112 && fltPlayerY == 0 && fltSection == 2 && (key == 'D' || key == 'd')) {
+            
+            fltPlayerX -= 16;
+
+        }
+
+        if (fltPlayerX == 48  && fltPlayerY == 0 && fltSection == 2 && (key == 'A' || key == 'a')) {
+            
+            fltPlayerX += 16;
+
+        }
+
         if ((fltPlayerX < 64 || fltPlayerX > 96) && fltPlayerY < 16 && fltSection == 2 && (key == 'W' || key == 'w')) {
             
             fltPlayerY += 16;
@@ -548,7 +633,12 @@ public class Sketch extends PApplet {
 
         }
 
-        System.out.println(fltPlayerX + " " + fltPlayerY);
+        if (fltPlayerX == 0 && fltPlayerY < 176 && fltSection == 2 && (key == 'W' || key == 'w')) {
+            
+            fltPlayerY += 16;
+
+        }
+
     }
 
     public void layerOne() {
@@ -605,27 +695,110 @@ public class Sketch extends PApplet {
         }
     }
 
-    private void displayPlayer() {
+    private void mouse() {
 
-        if (strDirection.equals("up")) {
+        if (dist(((mouseX / 16) * 16), ((mouseY / 16) * 16), fltPlayerX, fltPlayerY) <= (intRange * 16)) {
+            
+            if (mousePressed) {
+                
+                image(imgMouse_IR, ((mouseX / 16) * 16), ((mouseY / 16) * 16));
+
+                if ((mouseX / 16) * 16 > fltPlayerX) {
+
+                    strPDirection = "right";
+
+                } else if ((mouseX / 16) * 16 < fltPlayerX) {
+                   
+                    strPDirection = "left";
+
+                } else {
+                    
+                }
+            
+                if ((mouseY / 16) * 16 > fltPlayerY) {
+                    
+                    strPDirection = "down";
+
+                } else if ((mouseY / 16) * 16 < fltPlayerY) {
+
+                    strPDirection = "up";
+
+                }
+            
+            } else {
+
+                image(imgMouse, ((mouseX / 16) * 16), ((mouseY / 16) * 16));
+
+            }
+
+        } else {
+
+            image(imgMouse_OOR, ((mouseX / 16) * 16), ((mouseY / 16) * 16));
+
+        }
+    }
+
+    void displayPlayer() {
+        if (blnIsAttacking) {
+
+          // Implement attack animation logic
+          if (strPDirection.equals("up")) {
 
             image(imgCharacter_Up, fltPlayerX, fltPlayerY);
 
-        } else if (strDirection.equals("down")) {
+          } else if (strPDirection.equals("down")) {
 
-            image(imgCharacter_Down, fltPlayerX, fltPlayerY);
+            image(imgCharacter_Down_Attack[attackFrame], fltPlayerX, fltPlayerY);
 
-        } else if (strDirection.equals("left")) {
+          } else if (strPDirection.equals("left")) {
 
             image(imgCharacter_Left, fltPlayerX, fltPlayerY);
 
-        } else if (strDirection.equals("right")) {
+          } else if (strPDirection.equals("right")) {
 
             image(imgCharacter_Right, fltPlayerX, fltPlayerY);
+          }
+      
+          // Attack Animation
+          attackFrame = (attackFrame + 1) % totalFrames;
+        
+        } else {
 
+            // Display the regular character
+            if (strPDirection.equals("up")) {
+                
+                image(imgCharacter_Up, fltPlayerX, fltPlayerY);
+
+            } else if (strPDirection.equals("down")) {
+
+                image(imgCharacter_Down, fltPlayerX, fltPlayerY);
+
+            } else if (strPDirection.equals("left")) {
+
+                image(imgCharacter_Left, fltPlayerX, fltPlayerY);
+
+            } else if (strPDirection.equals("right")) {
+
+                image(imgCharacter_Right, fltPlayerX, fltPlayerY);
+
+            }
         }
-
     }
+      
+      public void mousePressed() {
+        
+        attackFrame = 0;
+        blnIsAttacking = true;
+        frameRate(15);
+
+      }
+      
+      public void mouseReleased() {
+        
+        blnIsAttacking = false;
+        frameRate(60);
+
+      }
 
     public void keyPressed() {
 
@@ -774,6 +947,107 @@ public class Sketch extends PApplet {
         }
 
     }
+
+    public void enemies() {
+        
+        if (fltSection == 2) {
+
+            if (!blnS1_Initialize) {
+
+                intS1_Lives = 3; // or any other value you desire
+                fltS1_X = 128;
+                fltS1_Y = 128;
+                blnS1_Initialize = true;
+            
+            }
+
+            if (intS1_Lives > 0) {
+
+                skeletonMoveDelay--;
+
+                if (skeletonMoveDelay <= 0) {
+
+                    skeletonMoveDelay = 30;
+            
+                    if (abs(fltS1_X - fltPlayerX) > abs(fltS1_Y - fltPlayerY)) {
+                    
+                        if (fltS1_X < fltPlayerX) {
+                            
+                            fltS1_X += 16;
+                            strSDirection = "right";
+
+                        } else if (fltS1_X > fltPlayerX) {
+                            
+                            fltS1_X -= 16;
+                            strSDirection = "left";
+                        }
+
+                    } else {
+
+                        if (fltS1_Y < fltPlayerY) {
+                            
+                            fltS1_Y += 16;
+                            strSDirection = "down";
+
+                        } else if (fltS1_Y > fltPlayerY) {
+                            
+                            fltS1_Y -= 16;
+                            strSDirection = "up";
+                        }
+
+                        if (dist(fltS1_X, fltS1_Y, fltPlayerX, fltPlayerY) < 20) { 
+                        
+                            intPlayerLives--;
+                
+                        }
+
+                    }
+
+                }
+
+                if (strSDirection.equals("up")) {
+
+                        image(imgSkeleton_Up, fltS1_X, fltS1_Y);
+
+                    } else if (strSDirection.equals("down")) {
+
+                        image(imgSkeleton_Down, fltS1_X, fltS1_Y);
+
+                    } else if (strSDirection.equals("left")) {
+
+                        image(imgSkeleton_Left, fltS1_X, fltS1_Y);
+
+                    } else if (strSDirection.equals("right")) {
+
+                        image(imgSkeleton_Right, fltS1_X, fltS1_Y);
+
+                }
+
+                if (dist(((mouseX / 16) * 16), ((mouseY / 16) * 16), fltPlayerX, fltPlayerY) <= (intRange * 16)) {
+                    
+                    if (mousePressed && ((mouseX / 16) * 16 == (fltS1_X / 16) * 16) && ((mouseY / 16) * 16 == (fltS1_Y / 16) * 16)) {
+
+                        blnMouseUp = true;
+
+                    }
+
+                    if (blnMouseUp && mousePressed == false && ((mouseX / 16) * 16 == (fltS1_X / 16) * 16) && ((mouseY / 16) * 16 == (fltS1_Y / 16) * 16)) {
+
+                        intS1_Lives = intS1_Lives - 1;
+                        blnMouseUp = false;
+
+                    }
+
+                }
+
+            } else {
+
+            }
+
+        }
+
+    }
+    
 
     public void displaySigns() {
         
