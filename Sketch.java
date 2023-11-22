@@ -20,6 +20,9 @@ public class Sketch extends PApplet {
     PImage imgSkeleton_Left;
     PImage imgSkeleton_Right;
 
+    // Start Menu
+    PImage imgStartMenu;
+
     // Signs
     PImage imgSign;
     PImage imgSignText1;
@@ -144,6 +147,7 @@ public class Sketch extends PApplet {
     boolean blnMouseUp = true;
     boolean blnIsAttacking = false;
     boolean blnGameOver = false;
+    boolean blnStartMenu = true;
 
     public void settings() {
         size(240, 240);
@@ -185,6 +189,9 @@ public class Sketch extends PApplet {
         imgSkeleton_Left = loadImage("Images/Enemy/Skeleton_Left.png");
         imgSkeleton_Right = loadImage("Images/Enemy/Skeleton_Right.png");
 
+        // Load Start Menu
+
+        imgStartMenu = loadImage("Images/Start_Menu.png");
 
         // Load Signs
         imgSign = loadImage("Images/Environment/Sign.png");
@@ -343,6 +350,8 @@ public class Sketch extends PApplet {
 
         if (!blnGameOver) {
 
+            if (blnStartMenu == false) {
+
             startGame();
 
             movePlayer();
@@ -367,15 +376,33 @@ public class Sketch extends PApplet {
 
             gameOver();
 
+            } else {
+
+                startMenu();
+                selectCharacter();
+
+            }
+
         } else {
 
             background(255, 255, 255);
-
 
         }
 
     }
 
+    private void startMenu() {
+
+        image(imgStartMenu, 0, 0); 
+
+    }
+
+    private void selectCharacter() {
+
+
+
+    }
+    
     private void startGame() {
 
         if (fltSection == 0) {
