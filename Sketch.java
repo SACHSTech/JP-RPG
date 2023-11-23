@@ -144,10 +144,10 @@ public class Sketch extends PApplet {
     boolean blnEricHouse = false;
     boolean blnDayTime = true;
     boolean blnS1_Initialize = false;
-    boolean blnMouseUp = true;
     boolean blnIsAttacking = false;
     boolean blnGameOver = false;
     boolean blnStartMenu = true;
+    boolean blnSetting = false;
 
     public void settings() {
         size(240, 240);
@@ -379,7 +379,14 @@ public class Sketch extends PApplet {
             } else {
 
                 startMenu();
+                
                 selectCharacter();
+
+                if (blnSetting) {
+
+                    setting();
+
+                }
 
             }
 
@@ -394,6 +401,18 @@ public class Sketch extends PApplet {
     private void startMenu() {
 
         image(imgStartMenu, 0, 0); 
+
+        if ((mouseX > 50 && mouseX < 185) && (mouseY > 110 && mouseY < 135) && mousePressed) {
+            
+            blnStartMenu = false;
+        
+        } else if ((mouseX > 75 && mouseX < 165) && (mouseY > 145 && mouseY < 165) && mousePressed) {
+        
+            blnSetting = true;
+        
+        } else {
+
+        }
 
     }
 
@@ -422,6 +441,12 @@ public class Sketch extends PApplet {
             }
 
         }
+
+    }
+
+    private void setting() {
+
+        
 
     }
 
@@ -1103,14 +1128,8 @@ public class Sketch extends PApplet {
                     
                     if (mousePressed && ((mouseX / 16) * 16 == (fltS1_X / 16) * 16) && ((mouseY / 16) * 16 == (fltS1_Y / 16) * 16)) {
 
-                        blnMouseUp = true;
-
-                    }
-
-                    if (blnMouseUp && mousePressed == false && ((mouseX / 16) * 16 == (fltS1_X / 16) * 16) && ((mouseY / 16) * 16 == (fltS1_Y / 16) * 16)) {
-
                         intS1_Lives = intS1_Lives - 1;
-                        blnMouseUp = false;
+        
 
                     }
 
