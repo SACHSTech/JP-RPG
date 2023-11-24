@@ -10,7 +10,9 @@ class Main {
     
     String[] processingArgs = {"MySketch"};
 	  Sketch mySketch = new Sketch();
+    PlayMusic myMusic = new PlayMusic();
 	  PApplet.runSketch(processingArgs, mySketch);
+   
   }
   
 }
