@@ -21,7 +21,7 @@ class Main {
     Scanner scanner = new Scanner(System.in);
 		
 	// finds the wav file to play
-	File file = new File("playmusic/Music2.wav");
+	File file = new File("Music/Music2.wav");
 	AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
 
 	// preps the music file, opens it, and plays it from the start and makes go forever
