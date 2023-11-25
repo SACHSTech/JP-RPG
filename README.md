@@ -1,6 +1,6 @@
 # JPGames Presents Adventures of Eric
 
-In the heart of Eldoria, a realm steeped in magic and mystery, there exists a rare and enchanting flora known as the Faberian Starflowers. Legend has it that these blossoms were bestowed upon the land by an ancient sorcerer whose name has long faded from memory.
+In the heart of Eldoria, a realm steeped in mystery, there exists a rare and enchanting flora known as the Faberian Starflowers. Legend has it that these blossoms were bestowed upon the land by an ancient sorcerer whose name has long faded from memory.
 
 The Faberian Starflowers are renowned for their magical properties, each petal carrying a trace of the mystical energies that once coursed through the forgotten hero, now known only as the "Enigma of Eldoria." As the tale goes, this enigmatic figure was a guardian of secrets, a weaver of weapons who sought to leave an indelible mark on the world.
 
