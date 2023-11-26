@@ -15,10 +15,10 @@ public class Sketch extends PApplet {
     PImage[] imgCharacter_Right_Attack;
 
     // Easter Egg Character
-    PImage Eric_Up;
-    PImage Eric_Down;
-    PImage Eric_Left;
-    PImage Eric_Right;
+    PImage imgEric_Up;
+    PImage imgEric_Down;
+    PImage imgEric_Left;
+    PImage imgEric_Right;
 
     // Enemy 
     PImage imgSkeleton_Up;
@@ -188,15 +188,19 @@ public class Sketch extends PApplet {
             imgCharacter_Right_Attack[i] = loadImage("Images/Player/Character_Right_Attack" + i + ".png");
         }
         
-        // Load Enemy
+        // Load Easter Egg
+        imgEric_Up = loadImage("Images/Eric/Eric_Up.png");
+        imgEric_Down = loadImage("Images/Eric/Eric_Down.png");
+        imgEric_Left = loadImage("Images/Eric/Eric_Left.png");
+        imgEric_Right = loadImage("Images/Eric/Eric_Right.png");
 
+        // Load Enemy
         imgSkeleton_Up = loadImage("Images/Enemy/Skeleton_Up.png");
         imgSkeleton_Down = loadImage("Images/Enemy/Skeleton_Down.png");
         imgSkeleton_Left = loadImage("Images/Enemy/Skeleton_Left.png");
         imgSkeleton_Right = loadImage("Images/Enemy/Skeleton_Right.png");
 
         // Load Start Menu
-
         imgStartMenu = loadImage("Images/Start_Menu.png");
 
         // Load Signs
