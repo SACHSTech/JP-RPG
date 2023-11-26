@@ -14,6 +14,12 @@ public class Sketch extends PApplet {
     PImage[] imgCharacter_Left_Attack;
     PImage[] imgCharacter_Right_Attack;
 
+    // Easter Egg Character
+    PImage Eric_Up;
+    PImage Eric_Down;
+    PImage Eric_Left;
+    PImage Eric_Right;
+
     // Enemy 
     PImage imgSkeleton_Up;
     PImage imgSkeleton_Down;
