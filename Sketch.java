@@ -199,7 +199,7 @@ public class Sketch extends PApplet {
         imgEric_Left = loadImage("Images/Eric/Eric_Left.png");
         imgEric_Right = loadImage("Images/Eric/Eric_Right.png");
 
-        // Load Character Animation
+        // Load Easter Egg Animation
         imgEric_Up_Attack = new PImage[totalFrames];
         imgEric_Down_Attack = new PImage[totalFrames];
         imgEric_Left_Attack = new PImage[totalFrames];
@@ -234,7 +234,7 @@ public class Sketch extends PApplet {
         imgSign = loadImage("Images/Environment/Sign.png");
         imgSignText1 = loadImage("Images/Environment/Sign_Text/Sign_Text1.png");
         
-        // Load & Resize Eric's House (Preston Sucks)
+        // Load & Resize Eric's House (Preston and Jacky Suck)
         imgH1_1 = loadImage("Images/Buildings/Eric_House/H1_1.png");
         imgH1_1.resize(16,16);
         imgH1_2 = loadImage("Images/Buildings/Eric_House/H1_2.png");
