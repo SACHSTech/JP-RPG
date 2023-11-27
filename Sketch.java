@@ -20,6 +20,11 @@ public class Sketch extends PApplet {
     PImage imgEric_Left;
     PImage imgEric_Right;
 
+    PImage[] imgEric_Up_Attack;
+    PImage[] imgEric_Down_Attack;
+    PImage[] imgEric_Left_Attack;
+    PImage[] imgEric_Right_Attack;
+
     // Enemy 
     PImage imgSkeleton_Up;
     PImage imgSkeleton_Down;
@@ -193,6 +198,28 @@ public class Sketch extends PApplet {
         imgEric_Down = loadImage("Images/Eric/Eric_Down.png");
         imgEric_Left = loadImage("Images/Eric/Eric_Left.png");
         imgEric_Right = loadImage("Images/Eric/Eric_Right.png");
+
+        // Load Character Animation
+        imgEric_Up_Attack = new PImage[totalFrames];
+        imgEric_Down_Attack = new PImage[totalFrames];
+        imgEric_Left_Attack = new PImage[totalFrames];
+        imgEric_Right_Attack = new PImage[totalFrames];
+
+        for (int i = 0; i < totalFrames; i++) {
+            imgEric_Up_Attack[i] = loadImage("Images/Eric/Eric_Up_Attack" + i + ".png");
+        }
+
+        for (int i = 0; i < totalFrames; i++) {
+            imgEric_Down_Attack[i] = loadImage("Images/Eric/Eric_Down_Attack" + i + ".png");
+        }
+
+        for (int i = 0; i < totalFrames; i++) {
+            imgEric_Left_Attack[i] = loadImage("Images/Eric/Eric_Left_Attack" + i + ".png");
+        }
+
+        for (int i = 0; i < totalFrames; i++) {
+            imgEric_Right_Attack[i] = loadImage("Images/Eric/Eric_Right_Attack" + i + ".png");
+        }
 
         // Load Enemy
         imgSkeleton_Up = loadImage("Images/Enemy/Skeleton_Up.png");
